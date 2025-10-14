@@ -1,75 +1,89 @@
 {
-    "name": "app-consulta-parte-dev",
-    "version": "1.0.0",
-    "description": "Consulta de Parte – e-SAJ: Localiza processos por nome da parte diretamente nos sistemas judiciais",
-    "auth": {
-        "description": {
-            "title": "Configuração de Acesso",
-            "body": "Configure suas credenciais para acessar o serviço.",
-            "footer": "As credenciais são armazenadas com segurança.",
-            "link": ""
+  "name": "app-consulta-parte-dev",
+  "version": "1.0.0",
+  "description": "Consulta de Parte – e-SAJ: Localiza processos por nome da parte diretamente nos sistemas judiciais",
+  "auth": {
+    "description": {
+      "title": "Configuração de Acesso",
+      "body": "Configure suas credenciais para acessar o serviço.",
+      "footer": "As credenciais são armazenadas com segurança.",
+      "link": ""
+    },
+    "params": [
+      {
+        "name": "whomToken",
+        "type": "string",
+        "inputType": "text",
+        "required": true,
+        "label": "Token do Whom"
+      },
+      {
+        "name": "whomExtensionId",
+        "type": "string",
+        "inputType": "text",
+        "required": true,
+        "label": "ID da Extensão do Whom"
+      }
+    ]
+  },
+  "functions": {
+    "consultarParte": {
+      "script": "dist/consultarParte.js",
+      "description": "Busca processos por nome da parte",
+      "category": "judicial",
+      "values": {
+        "termo": "exemplo",
+        "filtro": "todos"
+      },
+      "params": [
+        {
+          "name": "termo",
+          "type": "string",
+          "inputType": "text",
+          "required": true,
+          "label": "Termo de consulta"
         },
-        "params": [            {
-                "name": "whomToken",
-                "type": "string",
-                "inputType": "text",
-                "required": true,
-                "label": "Token do Whom"
-            },
-            {
-                "name": "whomExtensionId",
-                "type": "string",
-                "inputType": "text",
-                "required": true,
-                "label": "ID da Extensão do Whom"
-            }        
-        ]
+        {
+          "name": "filtro",
+          "type": "string",
+          "inputType": "text",
+          "required": false,
+          "label": "Filtro de resultados"
+        }
+      ],
+      "help": {
+        "title": "Como usar a função consultarParte",
+        "body": "Para utilizar a função consultarParte, forneça o nome da parte que deseja buscar no campo 'termo'. Você pode opcionalmente aplicar um 'filtro' para refinar os resultados. A função retornará uma lista de processos relacionados à parte consultada.",
+        "footer": "Certifique-se de que o nome da parte esteja correto para melhores resultados."
+      }
     },
-    "functions": {        
-        "consultarParte": {
-            "script": "dist/consultarParte.js",
-            "description": "Busca processos por nome da parte",
-            "category": "judicial",
-            "values": {
-                "termo": "exemplo",
-                "filtro": "todos"
-            },
-            "params": [
-                {
-                    "name": "termo",
-                    "type": "string",
-                    "inputType": "text",
-                    "required": true,
-                    "label": "Termo de consulta"
-                },
-                {
-                    "name": "filtro",
-                    "type": "string",
-                    "inputType": "text",
-                    "required": false,
-                    "label": "Filtro de resultados"
-                }
-            ]        },
-        "detalharParte": {
-            "script": "dist/detalharParte.js",
-            "description": "Obtém detalhes de parte em processo",
-            "category": "judicial",
-            "values": {
-                "parametro": "valor"
-            },
-            "params": [
-                {
-                    "name": "parametro",
-                    "type": "string",
-                    "inputType": "text",
-                    "required": true,
-                    "label": "Parâmetro principal"
-                }
-            ]        }    },
-    "config": {
-        "timeout": 60000,
-        "max_retries": 3,
-        "cache_ttl": 3600
-    },
-    "mcp": true
+    "detalharParte": {
+      "script": "dist/detalharParte.js",
+      "description": "Obtém detalhes de parte em processo",
+      "category": "judicial",
+      "values": {
+        "parametro": "valor"
+      },
+      "params": [
+        {
+          "name": "parametro",
+          "type": "string",
+          "inputType": "text",
+          "required": true,
+          "label": "Parâmetro principal"
+        }
+      ],
+      "help": {
+        "title": "Como usar a função detalharParte",
+        "body": "Para utilizar a função detalharParte, forneça o identificador da parte que deseja detalhar no campo 'parametro'. A função retornará informações detalhadas sobre a parte no processo.",
+        "footer": "Certifique-se de que o identificador da parte esteja correto para melhores resultados."
+      }
+    }
+  },
+  "config": {
+    "timeout": 60000,
+    "max_retries": 3,
+    "cache_ttl": 3600
+  },
+  "mcp": true
 }
