@@ -28,6 +28,7 @@
   },
   "functions": {
     "consultarParte": {
+      "name": "Consultar Parte - e-SAJ",
       "script": "dist/consultarParte.js",
       "description": "Busca processos por nome da parte",
       "category": "judicial",
@@ -58,6 +59,7 @@
       }
     },
     "detalharParte": {
+      "name": "Detalhar Parte - e-SAJ",
       "script": "dist/detalharParte.js",
       "description": "Obtém detalhes de parte em processo",
       "category": "judicial",
